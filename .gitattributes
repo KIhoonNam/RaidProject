@@ -58,3 +58,5 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 BinariesWin64Raid.exe filter=lfs diff=lfs merge=lfs -text
+ContentParagonRampageCharactersGlobalMaterialLayersWoodT_TreeBark_N.uasset filter=lfs diff=lfs merge=lfs -text
+ContentParagonRampageCharactersGlobalMaterialLayersWoodT_TreeBark_D.uasset filter=lfs diff=lfs merge=lfs -text
