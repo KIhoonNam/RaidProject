@@ -1,0 +1,29 @@
+[33mcommit aecbbbe7c147726ffe6ce607b58a4516c25934a3[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: NamKiHoon <ska960812@gmail.com>
+Date:   Thu Mar 10 17:50:55 2022 +0900
+
+    Ignore
+
+[33mcommit 315c927fdf4cb45f8c577e3c44e32c54f0af6400[m
+Author: NamKiHoon <ska960812@gmail.com>
+Date:   Thu Mar 10 17:32:25 2022 +0900
+
+    Update First
+
+[33mcommit 9f204e5a80197046e74135b11063df40680e0ce7[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: NamKiHoon <ska960812@gmail.com>
+Date:   Thu Mar 10 17:28:47 2022 +0900
+
+    Update LFS
+
+[33mcommit 73d120465db06563526c64a63b1d6c8980e78b8b[m
+Author: NamKiHoon <ska960812@gmail.com>
+Date:   Thu Mar 10 17:24:45 2022 +0900
+
+    update gitattributes for lfs
+
+[33mcommit bfa48dccb3143362cc7a92c2153d62d6d2071158[m
+Author: NamKiHoon <ska9641@aiaracorp.com>
+Date:   Thu Mar 10 16:18:39 2022 +0900
+
+    .gitignore 및 .gitattributes를 추가하세요.
