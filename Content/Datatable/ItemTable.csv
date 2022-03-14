@@ -1,0 +1,11 @@
+﻿Name,Count,ItemImage,ItemType,Iid,EquipType
+0,1,Cloth,EItemType::Equip,0,EEquipType::TOP
+1,1,Knife,EItemType::Equip,1,EEquipType::WEAPON
+2,1,Repair,EItemType::Equip,2,EEquipType::Gloves
+3,7,DmUpPotion,EItemType::Potion,3,
+4,6,GreatHpMeat,EItemType::Potion,4,
+5,8,HpMeat,EItemType::Potion,5,
+6,10,MpPoint,EItemType::Potion,6,
+7,3,Wood01,EItemType::Material,7,
+8,5,Wood02,EItemType::Material,8,
+9,3,Gold,EItemType::USEMATERIAL,9,
