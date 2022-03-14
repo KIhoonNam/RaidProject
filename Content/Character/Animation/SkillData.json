@@ -1,0 +1,34 @@
+[
+	{
+		"Name": "DashAttack",
+		"AnimMontage": "AnimMontage'/Game/Character/Animation/TwinBlade_DashAttack.TwinBlade_DashAttack'",
+		"Texture": "Texture2D'/Game/Character/EffectImage/QSkill.QSkill'",
+		"Damage": 80,
+		"Cool": 8,
+		"Mana": 200
+	},
+	{
+		"Name": "Dash",
+		"AnimMontage": "AnimMontage'/Game/Character/Animation/TwinBlade_Dash.TwinBlade_Dash'",
+		"Texture": "Texture2D'/Game/Character/EffectImage/Dash.Dash'",
+		"Damage": 0,
+		"Cool": 8,
+		"Mana": 0
+	},
+	{
+		"Name": "Ulti",
+		"AnimMontage": "AnimMontage'/Game/Character/Animation/TwinBlade_Ultimate.TwinBlade_Ultimate'",
+		"Texture": "Texture2D'/Game/Character/EffectImage/Ulti.Ulti'",
+		"Damage": 2000,
+		"Cool": 300,
+		"Mana": 0
+	},
+	{
+		"Name": "Dodge",
+		"AnimMontage": "AnimMontage'/Game/Character/Animation/TwinBlade_StUp.TwinBlade_StUp'",
+		"Texture": "Texture2D'/Game/Character/EffectImage/Dodge.Dodge'",
+		"Damage": 0,
+		"Cool": 10,
+		"Mana": 0
+	}
+]

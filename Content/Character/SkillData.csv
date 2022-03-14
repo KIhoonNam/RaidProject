@@ -1,0 +1,5 @@
+---,AnimMontage,Name,Texture,Damage,Cool,Mana,Delay
+DashAttack,"AnimMontage'/Game/Character/Animation/TwinBlade_DashAttack.TwinBlade_DashAttack'","DashAttack","Texture2D'/Game/Character/EffectImage/QSkill.QSkill'","80.000000","8.000000","200","0.0"
+Dash,"AnimMontage'/Game/Character/Animation/TwinBlade_Dash.TwinBlade_Dash'","Dash","Texture2D'/Game/Character/EffectImage/Dash.Dash'","0.000000","8.000000","0","0.0"
+Ulti,"AnimMontage'/Game/Character/Animation/TwinBlade_Ultimate.TwinBlade_Ultimate'","Ulti","Texture2D'/Game/Character/EffectImage/Ulti.Ulti'","2000.000000","300.000000","0","0.0"
+Dodge,"AnimMontage'/Game/Character/Animation/TwinBlade_StUp.TwinBlade_StUp'","Dodge","Texture2D'/Game/Character/EffectImage/Dodge.Dodge'","0.000000","10.000000","0","0.0"
