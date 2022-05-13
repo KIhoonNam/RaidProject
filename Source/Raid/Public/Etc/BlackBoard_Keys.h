@@ -14,7 +14,9 @@ namespace bb_Keys
 	TCHAR const* const player_is_in_melee_range = TEXT("IsPlayerInMeRange");
 	TCHAR const* const enemy_range_over = TEXT("EnemyRangeOver");
 	TCHAR const* const player_object = TEXT("PlayerObject");
-	TCHAR const* const attack_check = TEXT("AttackCheck");	
+	TCHAR const* const attack_check = TEXT("AttackCheck");
+	TCHAR const* const start = TEXT("Start");
+	TCHAR const* const hit_check = TEXT("HitCheck");
 }
 
 /**

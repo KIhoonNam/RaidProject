@@ -2,13 +2,13 @@
 
 
 #include "Character/EnemyCharacterBase.h"
+#include <Raid/Public/Controller/EnemyControllerBase.h>
 
 // Sets default values
 AEnemyCharacterBase::AEnemyCharacterBase()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 	Hp = 5000;
 	Damage = 20000;
 	Armor = 1000;
@@ -71,12 +71,41 @@ void AEnemyCharacterBase::OnConstruction(const FTransform& Transform)
 	Super::OnConstruction(Transform);
 }
 
+void AEnemyCharacterBase::FadeOutTimer()
+{
+	float ParameterValue;
+		for (int i = 0; i < DynamicMaterial.Num(); i++)
+		{
+			
+			DynamicMaterial[i]->GetScalarParameterValue(TEXT("FadeOut"), ParameterValue);
+			float Sum = ParameterValue - 0.05f;
+			DynamicMaterial[i]->SetScalarParameterValue(TEXT("FadeOut"), Sum);
+	
+		}
+		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, TEXT("Set"));
+		if (ParameterValue <= 0.0f)
+		{
+			AEnemyControllerBase* EnemyController = Cast<AEnemyControllerBase>(this->GetController());
+			EnemyController->GetBlackboardComponent()->SetValueAsBool(bb_Keys::start, true);
+			GetWorld()->GetTimerManager().ClearTimer(FadeHandle);
+		}
+	
+
+		
+	
+	
+}
+
 float AEnemyCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	const float TotalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
 	if (TotalDamage >= 0)
 	{
+
+		AEnemyControllerBase* EnemyController = Cast<AEnemyControllerBase>(this->GetController());
+		EnemyController->GetBlackboardComponent()->SetValueAsBool(bb_Keys::hit_check, true);
+
 		DamageWidget = CreateWidget<UDamageText>(GetWorld(), DamageWidgetClass);
 
 		if (DamageWidget)

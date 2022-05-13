@@ -53,7 +53,7 @@ void AObjectPool::BeginPlay()
 		FVector SpawnLocation = GetActorLocation();
 		FVector RandomSpawn = FVector(FMath::RandRange(-200.0f, 200.0f), FMath::RandRange(-200.0f, 200.0f),0.0f);
 		FVector SpawnPoint = SpawnLocation + RandomSpawn;
-		FRotator rotator;
+		FRotator rotator = FRotator(0.0f,0.0f,0.0f);
 
 		if (Rampage != nullptr && Iggy != nullptr)
 		{	

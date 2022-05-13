@@ -52,7 +52,37 @@ void AEnemyIggyCharacter::PlayMontage(UAnimMontage* _montage)
 void AEnemyIggyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	Material.Init(nullptr, GetMesh()->GetNumMaterials());
 
+	for (int i = 0; i < Material.Num(); i++)
+	{
+
+		Material[i] = GetMesh()->GetMaterial(i);
+	}
+
+	DynamicMaterial.Init(nullptr, Material.Num());
+
+	for (int i = 0; i < DynamicMaterial.Num(); i++)
+	{
+
+		DynamicMaterial[i] = UMaterialInstanceDynamic::Create(Material[i], this);
+	}
+
+	for (int i = 0; i < GetMesh()->GetNumMaterials(); i++)
+	{
+
+		GetMesh()->SetMaterial(i, DynamicMaterial[i]);
+	}
+
+	for (int i = 0; i < DynamicMaterial.Num(); i++)
+	{
+
+		DynamicMaterial[i]->SetScalarParameterValue(TEXT("FadeOut"), 1.0f);
+	}
+
+
+	float waitTime = 0.1f;
+	GetWorld()->GetTimerManager().SetTimer(FadeHandle, this, &AEnemyIggyCharacter::FadeOutTimer, waitTime, true);
 
 }
 

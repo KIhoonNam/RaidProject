@@ -11,6 +11,8 @@
 
 #include <Kismet/GameplayStatics.h>
 
+#include <Engine/Public/TimerManager.h>
+
 #include "Engine/Classes/GameFramework/CharacterMovementComponent.h"
 
 #include "CoreMinimal.h"
@@ -84,7 +86,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<FString,class UAnimMontage*> Montage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		TArray<class UMaterialInterface*> Material;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		TArray<class UMaterialInstanceDynamic*> DynamicMaterial;
 
 	UPROPERTY(VisibleAnywhere)
 		TSubclassOf<class UAnimInstance> AnimBP;
@@ -93,6 +99,16 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool Attack = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		float FadeOutScala = 1.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		bool DeathCheck = false;
+	FTimerHandle FadeHandle;
+protected:
+	virtual void FadeOutTimer();
+
 
 public:	
 		virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;

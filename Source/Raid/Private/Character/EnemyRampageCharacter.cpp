@@ -29,7 +29,17 @@ AEnemyRampageCharacter::AEnemyRampageCharacter()
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> MeleeAttackObject(TEXT("AnimMontage'/Game/Character/Animation/Rampage/RampageMeleeAttack.RampageMeleeAttack'"));
 	if (MeleeAttackObject.Succeeded())
 	{
-		Montage.Add(TEXT("Melee"),MeleeAttackObject.Object);
+		Montage.Add(TEXT("Melee"), MeleeAttackObject.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> HitObject(TEXT("AnimMontage'/Game/Character/Animation/Rampage/RampageHit.RampageHit'"));
+	if (MeleeAttackObject.Succeeded())
+	{
+		Montage.Add(TEXT("Hit"), HitObject.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> DeathObject(TEXT("AnimMontage'/Game/Character/Animation/Rampage/RampageDeath.RampageDeath'"));
+	if (MeleeAttackObject.Succeeded())
+	{
+		Montage.Add(TEXT("Death"), DeathObject.Object);
 	}
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> PattonOneObject(TEXT("AnimMontage'/Game/Character/Animation/Rampage/RampagePattonOne.RampagePattonOne'"));
 	if (PattonOneObject.Succeeded())
@@ -55,6 +65,44 @@ void AEnemyRampageCharacter::PlayMontage(UAnimMontage* _montage)
 void AEnemyRampageCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Material.Init(nullptr, GetMesh()->GetNumMaterials());
+
+	for (int i = 0; i < Material.Num(); i++)
+	{
+
+		Material[i] = GetMesh()->GetMaterial(i);
+	}
+
+	DynamicMaterial.Init(nullptr, Material.Num());
+
+	for (int i = 0; i < DynamicMaterial.Num(); i++)
+	{
+		
+		DynamicMaterial[i] = UMaterialInstanceDynamic::Create(Material[i], this);
+	}
+
+	for (int i = 0; i < GetMesh()->GetNumMaterials(); i++)
+	{
+
+		GetMesh()->SetMaterial(i, DynamicMaterial[i]);
+	}
+
+	for (int i = 0; i < DynamicMaterial.Num(); i++)
+	{
+
+		DynamicMaterial[i]->SetScalarParameterValue(TEXT("FadeOut"), 1.0f);
+	}
+
+
+	float waitTime= 0.1f;
+	GetWorld()->GetTimerManager().SetTimer(FadeHandle,this, &AEnemyRampageCharacter::FadeOutTimer, waitTime, true);
+
+}
+
+void AEnemyRampageCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
 
 
 }
