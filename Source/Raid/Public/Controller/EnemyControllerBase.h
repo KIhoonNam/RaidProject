@@ -93,6 +93,11 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 		class UBlackboardComponent* BBComp;
 
+
+	bool IdleState = false;
+
+	float IdleTime;
+
 public:
 
 	UBlackboardComponent* GetBlackBoard() { return BBComp; }

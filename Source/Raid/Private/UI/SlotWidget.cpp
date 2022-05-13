@@ -25,6 +25,7 @@ FReply USlotWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const F
 	{
 
 		reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
+		
 	}
 	else if (InMouseEvent.IsMouseButtonDown(FKey("RightMouseButton")))
 	{
@@ -46,33 +47,7 @@ FReply USlotWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const F
 	}
 	return reply.NativeReply;
 }
-void USlotWidget::NativeOnDragCancelled(const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
-{
-	Super::NativeOnDragCancelled(InDragDropEvent, InOperation);
-	UDragDropWidget* oper = Cast<UDragDropWidget>(InOperation);
-	Controller->SetUIEnable(false);
-	oper->Slot->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-}
-FReply USlotWidget::NativeOnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
-{
-	
-	FEventReply reply;
-	reply.NativeReply = Super::NativeOnMouseButtonUp(MyGeometry, MouseEvent);
-
-
-	if (MouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
-	{
-		
-
-	}
-	else if (MouseEvent.IsMouseButtonDown(FKey("RightMouseButton")))
-	{
-		Controller->SetUIEnable(false);
-
-	}
-	return reply.NativeReply;
-}
 
 void USlotWidget::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
@@ -84,7 +59,7 @@ void USlotWidget::NativeOnDragDetected(const FGeometry& InGeometry, const FPoint
 		if (WidgetDD == nullptr) return;
 		//WidgetDD->Offset = InGeometry.AbsoluteToLocal(InMouseEvent.GetScreenSpacePosition() + FVector2D(50.0f,50.0f));
 		OutOperation = WidgetDD;;
-		
+
 		WidgetDD->SlotNum = this->SlotNum;
 		WidgetDD->Bar = this->SkillBar;
 		WidgetDD->Slot = this;
@@ -106,7 +81,7 @@ bool USlotWidget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 	Controller->SetUIEnable(false);
 	UDragDropWidget* oper = Cast<UDragDropWidget>(InOperation);
 	oper->Slot->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-	if (oper != nullptr&& SlotState == oper->SlotState)
+	if (oper != nullptr && SlotState == oper->SlotState)
 	{
 		if (SlotState == ESlotState::ITEM)
 		{
@@ -118,11 +93,61 @@ bool USlotWidget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 			Player->SwapSkill(oper->SlotNum, this->SlotNum);
 		}
 		return true;
-	
+
 	}
 
 	return false;
 }
+
+void USlotWidget::NativeOnDragCancelled(const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+{
+	Super::NativeOnDragCancelled(InDragDropEvent, InOperation);
+	UDragDropWidget* oper = Cast<UDragDropWidget>(InOperation);
+	Controller->SetUIEnable(false);
+	oper->Slot->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+
+}
+
+FReply USlotWidget::NativeOnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
+{
+	
+	FEventReply reply;
+	reply.NativeReply = Super::NativeOnMouseButtonUp(MyGeometry, MouseEvent);
+
+
+	if (MouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
+	{
+		
+
+	}
+	else if (MouseEvent.IsMouseButtonDown(FKey("RightMouseButton")))
+	{
+		Controller->SetUIEnable(false);
+
+	}
+	return reply.NativeReply;
+}
+
+FReply USlotWidget::NativeOnMouseButtonDoubleClick(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+
+	FEventReply reply;
+	reply.NativeReply = Super::NativeOnMouseButtonDoubleClick(InGeometry, InMouseEvent);
+
+
+	if (InMouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
+	{
+
+
+	}
+	else if (InMouseEvent.IsMouseButtonDown(FKey("RightMouseButton")))
+	{
+	
+
+	}
+	return reply.NativeReply;
+}
+
 
 
 FEventReply USlotWidget::OnMouseMove(FGeometry MyGeometry, const FPointerEvent& MouseEvent)

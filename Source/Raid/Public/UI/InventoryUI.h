@@ -23,15 +23,19 @@ public:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 		class UUniformGridPanel* UniformGrid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+		class UBorder* TopPanel;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		TArray<class USlotWidget*> SlotWidget;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		TArray<class UUniformGridSlot*> GridSlot;
 
 private:
+	virtual void NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation) override;
 
+	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
-	
+	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
 
 	virtual void NativeConstruct() override;
 

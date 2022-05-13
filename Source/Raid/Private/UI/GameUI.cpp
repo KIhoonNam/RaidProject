@@ -6,11 +6,12 @@
 #include <Raid/Public/UI/SkillItemWidget.h>
 #include <Raid/Public/UI/InventoryUI.h>
 #include <Raid/Public/UI/EquipmentUI.h>
+#include <Raid/Public/UI/DragDropWidget.h>
 #include <Raid/Public/Character/MyCharacter.h>
 
 
 
-
+#include <Blueprint/DragDropOperation.h>
 #include <Blueprint/WidgetTree.h>
 
 
@@ -94,4 +95,21 @@ void UGameUI::NativeConstruct()
 	Super::NativeConstruct();
 
 	Init();
+}
+
+bool UGameUI::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+{
+	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
+
+	UDragDropWidget* oper = Cast<UDragDropWidget>(InOperation);
+
+	if (oper == NULL) return false;
+
+	oper->CurrentWidget->AddToViewport();
+
+
+	FVector2D NewPosition = InGeometry.AbsoluteToLocal(InDragDropEvent.GetScreenSpacePosition()) - oper->DragPosition;
+	oper->CurrentWidget->SetPositionInViewport(NewPosition, false);
+
+	return true;
 }

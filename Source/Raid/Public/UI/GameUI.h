@@ -54,10 +54,13 @@ public:
 	virtual void SetPlayer(AMyCharacter* _player) { Player = _player; }
 	virtual void SetController(AMyPlayerController* _controller) { Controller = _controller; }
 
+
+
+
 protected:
 	AMyCharacter* Player;
 	AMyPlayerController* Controller;
 private:
 
-	
+	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 };

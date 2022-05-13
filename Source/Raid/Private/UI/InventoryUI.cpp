@@ -11,6 +11,7 @@
 #include <Components/TextBlock.h>
 #include <Components/Button.h>
 #include <Components/UniformGridPanel.h>
+#include <Components/Border.h>
 
 #include <Blueprint/DragDropOperation.h>
 #include <Blueprint/WidgetBlueprintLibrary.h>
@@ -55,6 +56,59 @@ void UInventoryUI::SwapItem(int32 _operNum, int32 _thisNum)
 
 	GridSlot[_thisNum]->SetRow(_thisNum / 7);
 	GridSlot[_thisNum]->SetColumn(_thisNum % 7);
+}
+
+void UInventoryUI::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
+{
+
+	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
+
+		UDragDropWidget* WidgetDD = Cast<UDragDropWidget>(UWidgetBlueprintLibrary::CreateDragDropOperation(UDragDropWidget::StaticClass()));
+
+		if (WidgetDD == nullptr) return;
+		//WidgetDD->Offset = InGeometry.AbsoluteToLocal(InMouseEvent.GetScreenSpacePosition() + FVector2D(50.0f,50.0f));
+
+		
+
+	
+		WidgetDD->DragPosition = InGeometry.AbsoluteToLocal(InMouseEvent.GetScreenSpacePosition());
+		WidgetDD->DefaultDragVisual = this;
+		WidgetDD->Pivot = EDragPivot::MouseDown;
+		WidgetDD->ParentWidget = this->GetParent();
+		WidgetDD->CurrentWidget = this;
+
+		OutOperation = WidgetDD;;
+
+		this->RemoveFromParent();
+
+ //	this->SetVisibility(ESlateVisibility::Collapsed);
+}
+
+bool UInventoryUI::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+{
+
+	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
+
+	
+	
+
+
+	return true;
+}
+
+FReply UInventoryUI::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	FEventReply reply;
+	reply.NativeReply = Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
+
+	if (InMouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
+	{
+		
+		reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
+
+	}
+
+	return reply.NativeReply;
 }
 
 void UInventoryUI::NativeConstruct()

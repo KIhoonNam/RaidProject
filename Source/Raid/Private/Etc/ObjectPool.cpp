@@ -51,12 +51,16 @@ void AObjectPool::BeginPlay()
 		SpawnParams.Owner = this;
 
 		FVector SpawnLocation = GetActorLocation();
+		FVector RandomSpawn = FVector(FMath::RandRange(-200.0f, 200.0f), FMath::RandRange(-200.0f, 200.0f),0.0f);
+		FVector SpawnPoint = SpawnLocation + RandomSpawn;
 		FRotator rotator;
 
 		if (Rampage != nullptr && Iggy != nullptr)
-		{
-			EnemyPool.Add(GetWorld()->SpawnActor<AEnemyIggyCharacter>(Iggy, SpawnLocation, rotator, SpawnParams));
-			EnemyPool.Add(GetWorld()->SpawnActor<AEnemyRampageCharacter>(Rampage, SpawnLocation, rotator, SpawnParams));
+		{	
+			EnemyPool.Add(GetWorld()->SpawnActor<AEnemyIggyCharacter>(Iggy, SpawnPoint, rotator, SpawnParams));
+			RandomSpawn = FVector(FMath::RandRange(-200.0f, 200.0f), FMath::RandRange(-200.0f, 200.0f), 0.0f);
+			SpawnPoint = SpawnLocation + RandomSpawn;
+			EnemyPool.Add(GetWorld()->SpawnActor<AEnemyRampageCharacter>(Rampage, SpawnPoint, rotator, SpawnParams));
 		
 		}
 	}

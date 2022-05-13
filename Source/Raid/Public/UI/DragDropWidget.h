@@ -26,10 +26,17 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USlotWidget* Slot;
 
+	UPROPERTY(EditAnywhere)
+		class UWidget* ParentWidget;
+
+	UPROPERTY(EditAnywhere)
+		class UUserWidget* CurrentWidget;
+
 	int SlotNum;
 	ESlotState SlotState;
 	int32 ItemId;
 	UTextBlock* ItemNum;
+	FVector2D DragPosition;
 
 
 protected:
