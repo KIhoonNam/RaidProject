@@ -32,7 +32,16 @@ AEnemyIggyCharacter::AEnemyIggyCharacter()
 	{
 		Montage.Add(TEXT("Melee"), MeleeAttackObject.Object);
 	}
-
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> HitObject(TEXT("AnimMontage'/Game/Character/Animation/Iggy/IggyHit.IggyHit'"));
+	if (MeleeAttackObject.Succeeded())
+	{
+		Montage.Add(TEXT("Hit"), HitObject.Object);
+	}
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> DeathObject(TEXT("AnimMontage'/Game/Character/Animation/Iggy/IggyDeath.IggyDeath'"));
+	if (MeleeAttackObject.Succeeded())
+	{
+		Montage.Add(TEXT("Death"), DeathObject.Object);
+	}
 
 	GetCapsuleComponent()->InitCapsuleSize(78.0f, 96.0f);
 

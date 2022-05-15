@@ -19,7 +19,7 @@ EBTNodeResult::Type UBTTask_Hit::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	FString MName = "Hit";
 
 	Controller->StopMovement();
-	Enemy->PlayMontage(Enemy->GetMontage()[MName]);
-
+	if (Enemy->GetMesh()->GetAnimInstance()->Montage_GetIsStopped(Enemy->GetMontage()[MName]))
+		Enemy->PlayMontage(Enemy->GetMontage()[MName]);
 	return EBTNodeResult::Succeeded;
 }
