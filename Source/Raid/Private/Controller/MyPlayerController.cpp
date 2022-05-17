@@ -111,6 +111,15 @@ void AMyPlayerController::InputInventoryReleased()
 
 }
 
+void AMyPlayerController::InputSkillPressed()
+{
+    m_Character->GetUI()->SetUIVisible(EUIVisible::Skill);
+}
+
+void AMyPlayerController::InputSkillReleased()
+{
+}
+
 void AMyPlayerController::InputEquipmentPressed()
 {
     m_Character->GetUI()->SetUIVisible(EUIVisible::Equipment);
@@ -182,6 +191,9 @@ void AMyPlayerController::SetupInputComponent()
 
     InputComponent->BindAction("Equipment", IE_Pressed, this, &AMyPlayerController::InputEquipmentPressed);
     InputComponent->BindAction("Equipment", IE_Released, this, &AMyPlayerController::InputEquipmentReleased);
+
+    InputComponent->BindAction("Skill", IE_Pressed, this, &AMyPlayerController::InputSkillPressed);
+    InputComponent->BindAction("Skill", IE_Released, this, &AMyPlayerController::InputSkillReleased);
 
     InputComponent->BindAction("Interactive", IE_Pressed, this, &AMyPlayerController::InputInteractivePressed);
     InputComponent->BindAction("Interactive", IE_Released, this, &AMyPlayerController::InputInteractiveReleased);

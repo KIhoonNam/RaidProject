@@ -7,6 +7,7 @@
 #include <Raid/Public/UI/InventoryUI.h>
 #include <Raid/Public/UI/EquipmentUI.h>
 #include <Raid/Public/UI/DragDropWidget.h>
+#include <Raid/Public/UI/SkillUI.h>
 #include <Raid/Public/Character/MyCharacter.h>
 
 
@@ -41,7 +42,7 @@ void UGameUI::Init()
 		Inven->SetPlayer(this->Player);
 		Inven->SetController(this->Controller);
 		Inven->Init();
-		Inven->SetVisibility(ESlateVisibility::Collapsed);
+		Inven->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
 	if (Equipment)
@@ -49,7 +50,16 @@ void UGameUI::Init()
 		Equipment->SetPlayer(this->Player);
 		Equipment->SetController(this->Controller);
 		Equipment->Init();
-		Equipment->SetVisibility(ESlateVisibility::Collapsed);
+		Equipment->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
+
+	}
+
+	if (Equipment)
+	{
+		Skill_UI->SetPlayer(this->Player);
+		Skill_UI->SetController(this->Controller);
+		//SkillUI->Init();
+		Skill_UI->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
 
 	}
 }
@@ -74,17 +84,22 @@ void UGameUI::SetUIVisible(EUIVisible _uivisible)
 	switch (_uivisible)
 	{
 	case EUIVisible::Inventory:
-		if(Inven->GetVisibility() == ESlateVisibility::Collapsed)
-			Inven->SetVisibility(ESlateVisibility::Visible);
-		else if (Inven->GetVisibility() == ESlateVisibility::Visible)
-			Inven->SetVisibility(ESlateVisibility::Collapsed);
+		if(Inven->GetRootWidget()->GetVisibility() == ESlateVisibility::Collapsed)
+			Inven->GetRootWidget()->SetVisibility(ESlateVisibility::Visible);
+		else if (Inven->GetRootWidget()->GetVisibility() == ESlateVisibility::Visible)
+			Inven->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
 		break;
 
 	case EUIVisible::Equipment:
-		if (Equipment->GetVisibility() == ESlateVisibility::Collapsed)
-			Equipment->SetVisibility(ESlateVisibility::Visible);
-		else if (Equipment->GetVisibility() == ESlateVisibility::Visible)
-			Equipment->SetVisibility(ESlateVisibility::Collapsed);
+		if (Equipment->GetRootWidget()->GetVisibility() == ESlateVisibility::Collapsed)
+			Equipment->GetRootWidget()->SetVisibility(ESlateVisibility::Visible);
+		else if (Equipment->GetRootWidget()->GetVisibility() == ESlateVisibility::Visible)
+			Equipment->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
+	case EUIVisible::Skill:
+		if (Skill_UI->GetRootWidget()->GetVisibility() == ESlateVisibility::Collapsed)
+			Skill_UI->GetRootWidget()->SetVisibility(ESlateVisibility::Visible);
+		else if (Skill_UI->GetRootWidget()->GetVisibility() == ESlateVisibility::Visible)
+			Skill_UI->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
 	default:
 		break;
 	}

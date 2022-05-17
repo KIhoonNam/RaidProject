@@ -83,7 +83,20 @@ void UInventoryUI::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 
  //	this->SetVisibility(ESlateVisibility::Collapsed);
 }
+FReply UInventoryUI::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	FEventReply reply;
+	reply.NativeReply = Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
+	if (InMouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
+	{
+
+		reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
+
+	}
+
+	return reply.NativeReply;
+}
 bool UInventoryUI::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
 
@@ -96,20 +109,7 @@ bool UInventoryUI::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEven
 	return true;
 }
 
-FReply UInventoryUI::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
-{
-	FEventReply reply;
-	reply.NativeReply = Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
-	if (InMouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
-	{
-		
-		reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
-
-	}
-
-	return reply.NativeReply;
-}
 
 void UInventoryUI::NativeConstruct()
 {

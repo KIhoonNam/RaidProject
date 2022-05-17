@@ -11,6 +11,7 @@ class USkillItemWidget;
 class UHealthBarWidget;
 class UInventoryUI;
 class UEquipmentUI;
+class USkillUI;
 /**
 * 
  * 
@@ -22,6 +23,7 @@ enum class EUIVisible : uint8
 {
 	Inventory UMETA(DisplayName = "Inventory"),
 	Equipment UMETA(DisplayName = "ATTACK"),
+	Skill UMETA(DisplayName = "SKLL"),
 	ABNORMAL UMETA(DisplayName = "ABNORMAL")
 };
 
@@ -39,6 +41,8 @@ public:
 		UInventoryUI* Inven;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 		UEquipmentUI* Equipment;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+		USkillUI* Skill_UI;
 	void Init() override;
 
 	void UpdateSkill();

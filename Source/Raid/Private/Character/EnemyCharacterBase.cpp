@@ -105,6 +105,9 @@ float AEnemyCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& Da
 
 		AEnemyControllerBase* EnemyController = Cast<AEnemyControllerBase>(this->GetController());
 		EnemyController->GetBlackboardComponent()->SetValueAsBool(bb_Keys::hit_check, true);
+		GetMesh()->GetAnimInstance()->StopAllMontages(0.2f);
+		EnemyController->StopMovement();
+		PlayAnimMontage(Montage["Hit"]);
 
 		DamageWidget = CreateWidget<UDamageText>(GetWorld(), DamageWidgetClass);
 

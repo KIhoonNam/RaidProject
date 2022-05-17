@@ -58,7 +58,10 @@ public:
 
 	virtual void PlayMontage(UAnimMontage* _montage);
 
-
+	UFUNCTION(BlueprintCallable)
+		bool GetHitCheck() { return HitCheck; }
+	UFUNCTION(BlueprintCallable)
+		void SetHitCheck(bool _hitcheck) { HitCheck = _hitcheck; }
 
 protected:
 	// Called when the game starts or when spawned
@@ -94,6 +97,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 		TSubclassOf<class UAnimInstance> AnimBP;
+
+	UPROPERTY(EditAnywhere)
+		bool HitCheck = false;
 
 	EEnemyType EnemyType;
 

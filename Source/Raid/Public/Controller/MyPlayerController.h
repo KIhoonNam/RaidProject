@@ -79,6 +79,10 @@ protected:
 
 	void InputInventoryReleased();
 
+	void InputSkillPressed();
+
+	void InputSkillReleased();
+
 	void InputEquipmentPressed();
 
 	void InputEquipmentReleased();

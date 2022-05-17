@@ -6,11 +6,14 @@
 #include <Components/VerticalBox.h>
 #include <Components/VerticalBoxSlot.h>
 
+#include <Blueprint/WidgetBlueprintLibrary.h>
+
 #include <Kismet/GameplayStatics.h>
 
 #include <Raid/Public/UI/SlotWidget.h>
 #include <Raid/Public/Character/MyCharacter.h>
 #include <Raid/Public/Etc/PNGameInstance.h>
+#include <Raid/Public/UI/DragDropWidget.h>
 
 TArray<USlotWidget*> UEquipmentUI::GetSlot()
 {
@@ -37,6 +40,45 @@ void UEquipmentUI::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	Super::NativeTick(MyGeometry, InDeltaTime);
 }
 
+void UEquipmentUI::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
+{
+
+	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
+
+	UDragDropWidget* WidgetDD = Cast<UDragDropWidget>(UWidgetBlueprintLibrary::CreateDragDropOperation(UDragDropWidget::StaticClass()));
+
+	if (WidgetDD == nullptr) return;
+	//WidgetDD->Offset = InGeometry.AbsoluteToLocal(InMouseEvent.GetScreenSpacePosition() + FVector2D(50.0f,50.0f));
+
+
+
+
+	WidgetDD->DragPosition = InGeometry.AbsoluteToLocal(InMouseEvent.GetScreenSpacePosition());
+	WidgetDD->DefaultDragVisual = this;
+	WidgetDD->Pivot = EDragPivot::MouseDown;
+	WidgetDD->ParentWidget = this->GetParent();
+	WidgetDD->CurrentWidget = this;
+
+	OutOperation = WidgetDD;;
+
+	this->RemoveFromParent();
+
+	//	this->SetVisibility(ESlateVisibility::Collapsed);
+}
+FReply UEquipmentUI::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	FEventReply reply;
+	reply.NativeReply = Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
+
+	if (InMouseEvent.IsMouseButtonDown(FKey("LeftMouseButton")))
+	{
+
+		reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
+
+	}
+
+	return reply.NativeReply;
+}
 
 void UEquipmentUI::Init()
 {

@@ -85,6 +85,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void UltimateAnimMontagePlay();
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -149,6 +150,10 @@ protected:
 
 	bool Infinity = false;
 	bool Stop = false;
+
+
+
+
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* RpgCameraComponent;

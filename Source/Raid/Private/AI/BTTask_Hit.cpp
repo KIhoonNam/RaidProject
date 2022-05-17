@@ -17,9 +17,14 @@ EBTNodeResult::Type UBTTask_Hit::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	auto Enemy = Cast<AEnemyCharacterBase>(Controller->GetPawn());
 
 	FString MName = "Hit";
+	if (Enemy->GetMesh()->GetAnimInstance()->Montage_GetIsStopped(Enemy->GetMontage()[MName]) && !Enemy->GetHitCheck())
+	{
 
+		Enemy->SetHitCheck(true);
+	}
+	//Enemy->GetMesh()->GetAnimInstance()->StopAllMontages(1.0f);
 	Controller->StopMovement();
-	if (Enemy->GetMesh()->GetAnimInstance()->Montage_GetIsStopped(Enemy->GetMontage()[MName]))
-		Enemy->PlayMontage(Enemy->GetMontage()[MName]);
+	Enemy->PlayMontage(Enemy->GetMontage()[MName]);
+
 	return EBTNodeResult::Succeeded;
 }

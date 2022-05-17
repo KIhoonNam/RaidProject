@@ -31,6 +31,7 @@ void UBTService_ActionCheck::OnBecomeRelevant(UBehaviorTreeComponent& owner_comp
 
 
 	Controller->GetBlackboardComponent()->SetValueAsBool(bb_Keys::attack_check, montage_has_finished(Enemy));
+	Enemy->SetHitCheck(false);
 	Enemy->SetEnemyType(EEnemyType::IDLE);
 
 }
