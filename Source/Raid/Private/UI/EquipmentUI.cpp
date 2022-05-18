@@ -12,7 +12,7 @@
 
 #include <Raid/Public/UI/SlotWidget.h>
 #include <Raid/Public/Character/MyCharacter.h>
-#include <Raid/Public/Etc/PNGameInstance.h>
+//#include <Raid/Public/Etc/PNGameInstance.h>
 #include <Raid/Public/UI/DragDropWidget.h>
 
 TArray<USlotWidget*> UEquipmentUI::GetSlot()

@@ -11,6 +11,7 @@ class UTextBlock;
 class UBorder;
 class USlotWidget;
 
+
 /**
  * 
  */
@@ -28,6 +29,9 @@ protected:
 
 	// 아이템 선택 시 호출
 	virtual void NativeOnItemSelectionChanged(bool bIsSelected) override;
+
+private:
+	void RefreshSkilitem(FSkillResourceData* _data);
 private:
 
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
@@ -44,4 +48,5 @@ private:
 		 UTextBlock* StateName;
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
 		 USlotWidget* SlotWidget;
+	
 };

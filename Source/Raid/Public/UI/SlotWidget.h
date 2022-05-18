@@ -11,6 +11,7 @@ class UInventoryUI;
 class AMyCharacter;
 struct FItemResourceData;
 
+
 UENUM(BlueprintType)
 enum class ESlotState : uint8
 {
@@ -35,6 +36,8 @@ public:
 	void ItemInit(FItemResourceData* _data,UInventoryUI* _inven);
 	void EquipmentInit(FItemResourceData* _data,UEquipmentUI* _equip);
 	void SetSlotState(ESlotState _slotstate) { SlotState = _slotstate; }
+
+	void SkillRefresh(FSkillResourceData* _data);
 
 
 	ESlotState GetSlotState() { return SlotState; }

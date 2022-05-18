@@ -4,7 +4,7 @@
 #include "UI/SkillListView.h"
 
 #include <Raid/Public/UI/SlotWidget.h>
-#include <Raid/Public/Etc/PNGameInstance.h>
+//#include <Raid/Public/Etc/PNGameInstance.h>
 
 #include <Kismet/GameplayStatics.h>
 
@@ -20,13 +20,29 @@ void USkillListView::NativeConstruct()
 
 void USkillListView::NativeOnListItemObjectSet(UObject* ListItemObject)
 {
-	UPNGameInstance* PNGameInstance = Cast<UPNGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
-	if (nullptr == PNGameInstance) return;
+	UPNGameInstance* PNGameInstance = Cast<UPNGameInstance>(ListItemObject);
 
-	auto CurrentItemData = PNGameInstance->GetSkillData();
+	auto SetSkillmSource = PNGameInstance->GetSkillResourceData(0);
+
+	if(SetSkillmSource != NULL)
+	RefreshSkilitem(SetSkillmSource);
+
+
 }
 
 void USkillListView::NativeOnItemSelectionChanged(bool bIsSelected)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Black, TEXT("HI"));
+}
+
+void USkillListView::RefreshSkilitem(FSkillResourceData* _data)
+{
+
+	SkillLevel->SetText(FText::FromString(FString::FromInt(_data->Count)));
+
+	SkillName->SetText(FText::FromString(_data->SkillName));
+
+	StateName->SetText(FText::FromString(_data->SkillTypeName));
+
+	SlotWidget->SkillRefresh(_data);
 }

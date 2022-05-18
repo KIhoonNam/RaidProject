@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include <Raid/Public/Controller/MyPlayerController.h>
+#include <Raid/Public/Etc/PNGameInstance.h>
 #include "CustomUI.generated.h"
 
 /**

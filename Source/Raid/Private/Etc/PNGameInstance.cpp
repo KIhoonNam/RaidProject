@@ -3,9 +3,9 @@
 
 #include "Etc/PNGameInstance.h"
 
-#include <Engine/DataTable.h>
 
-#include <Etc/CustomDataTable.h>
+
+
 
 UPNGameInstance::UPNGameInstance()
 {
@@ -22,6 +22,7 @@ UPNGameInstance::UPNGameInstance()
 	{
 		SkillResourceData = DT_SABCHARACTER.Object;
 	}
+
 }
 
 //FItemResourceData* UPNGameInstance::GetItemResourceDatas()

@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include <Engine/DataTable.h>
+#include <Etc/CustomDataTable.h>
 #include "PNGameInstance.generated.h"
 struct FSkillResourceData;
 struct FItemResourceData;

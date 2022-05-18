@@ -5,7 +5,7 @@
 #include <Raid/Public/UI/SlotWidget.h>
 #include <Raid/Public/Character/MyCharacter.h>
 #include <Raid/Public/UI/DragDropWidget.h>
-#include <Raid/Public/Etc/PNGameInstance.h>
+//#include <Raid/Public/Etc/PNGameInstance.h>
 
 #include <Components/UniformGridSlot.h>
 #include <Components/TextBlock.h>

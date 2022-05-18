@@ -15,7 +15,7 @@
 #include <UI/InventoryUI.h>
 #include <UI/EquipmentUI.h>
 #include <Raid/Public/Character/MyCharacter.h>
-#include <Raid/Public/Etc/CustomDataTable.h>
+//#include <Raid/Public/Etc/CustomDataTable.h>
 FReply USlotWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
 	FEventReply reply;
@@ -368,4 +368,12 @@ void USlotWidget::EquipRelease(UInventoryUI* _inven)
 			inslot->ItemRefresh(CurrentData);
 		}
 	}
+}
+
+void USlotWidget::SkillRefresh(FSkillResourceData* _data)
+{
+	Controller = Cast<AMyPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+	ItemNum->SetVisibility(ESlateVisibility::Collapsed);
+	SkillBar->WidgetStyle.BackgroundImage.SetResourceObject(_data->SkillImage);
+	
 }

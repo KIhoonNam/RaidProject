@@ -6,6 +6,8 @@
 #include "UI/CustomUI.h"
 #include "SkillUI.generated.h"
 
+class UListView;
+
 /**
  * 
  */
@@ -13,6 +15,12 @@ UCLASS()
 class RAID_API USkillUI : public UCustomUI
 {
 	GENERATED_BODY()
+public:
+	void Init();
+
 protected:
 	virtual void NativeConstruct() override;
+private:
+	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
+		UListView* SkillList;
 };

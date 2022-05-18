@@ -54,11 +54,11 @@ void UGameUI::Init()
 
 	}
 
-	if (Equipment)
+	if (Skill_UI)
 	{
 		Skill_UI->SetPlayer(this->Player);
 		Skill_UI->SetController(this->Controller);
-		//SkillUI->Init();
+		Skill_UI->Init();
 		Skill_UI->GetRootWidget()->SetVisibility(ESlateVisibility::Collapsed);
 
 	}
