@@ -14,5 +14,5 @@ class RAID_API USkillUI : public UCustomUI
 {
 	GENERATED_BODY()
 protected:
-
+	virtual void NativeConstruct() override;
 };

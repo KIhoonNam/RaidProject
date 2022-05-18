@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "PNGameInstance.generated.h"
-
+struct FSkillResourceData;
 struct FItemResourceData;
 class UDataTable;
 /**
@@ -20,8 +20,12 @@ public:
 	UPNGameInstance();
 	/*TArray<FItemResourceData*> GetItemResourceDatas();*/
 	FItemResourceData* GetItemResourceData(int32 Iid);
+	FSkillResourceData* GetSkillResourceData(int32 Iid);
+	UDataTable* GetSkillData() { return SkillResourceData; }
 
 private:
 	UPROPERTY()
 		UDataTable* ItemResourceData;
+	UPROPERTY()
+		UDataTable* SkillResourceData;
 };

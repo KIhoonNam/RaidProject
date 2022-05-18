@@ -3,3 +3,9 @@
 
 #include "UI/SkillUI.h"
 
+void USkillUI::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+
+}

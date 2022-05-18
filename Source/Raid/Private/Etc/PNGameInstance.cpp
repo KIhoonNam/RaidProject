@@ -15,6 +15,13 @@ UPNGameInstance::UPNGameInstance()
 	{
 		ItemResourceData = DT_ABCHARACTER.Object;
 	}
+
+	FString SkillResourceDataPath = TEXT("DataTable'/Game/Datatable/SkillTable.SkillTable'");
+	static ConstructorHelpers::FObjectFinder<UDataTable> DT_SABCHARACTER(*SkillResourceDataPath);
+	if (DT_SABCHARACTER.Succeeded())
+	{
+		SkillResourceData = DT_SABCHARACTER.Object;
+	}
 }
 
 //FItemResourceData* UPNGameInstance::GetItemResourceDatas()
@@ -24,5 +31,10 @@ UPNGameInstance::UPNGameInstance()
 
 FItemResourceData* UPNGameInstance::GetItemResourceData(int32 Iid)
 {
-	return  ItemResourceData->FindRow<FItemResourceData>(*FString::FromInt(Iid), TEXT(""));;
+	return  ItemResourceData->FindRow<FItemResourceData>(*FString::FromInt(Iid), TEXT(""));
+}
+
+FSkillResourceData* UPNGameInstance::GetSkillResourceData(int32 Iid)
+{
+	return SkillResourceData->FindRow<FSkillResourceData>(*FString::FromInt(Iid), TEXT(""));
 }
