@@ -76,6 +76,7 @@ void UInventoryUI::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 		WidgetDD->Pivot = EDragPivot::MouseDown;
 		WidgetDD->ParentWidget = this->GetParent();
 		WidgetDD->CurrentWidget = this;
+		WidgetDD->IsScreenMove = true;
 
 		OutOperation = WidgetDD;;
 

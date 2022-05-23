@@ -21,8 +21,10 @@ void USkillUI::Init()
 	UPNGameInstance* PNGameInstance = Cast<UPNGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
 	if (nullptr == PNGameInstance) return;
 
+	for (int i = 0; i < 30; i++)
+	{
+		auto CurrentItemData = NewObject<UPNGameInstance>(PNGameInstance);
+		SkillList->AddItem(CurrentItemData);
+	}
 
-	auto CurrentItemData = NewObject<UPNGameInstance>(PNGameInstance);
-		
-	SkillList->AddItem(CurrentItemData);
 }

@@ -90,7 +90,7 @@ bool USlotWidget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 		}
 		else if (SlotState == ESlotState::SKILL)
 		{
-			Player->SwapSkill(oper->SlotNum, this->SlotNum);
+			
 		}
 		return true;
 
@@ -229,7 +229,7 @@ void USlotWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	}
 	if(Controller->GetUIEnable())
 		ClickTime += InDeltaTime;
-	if (SlotState == ESlotState::SKILL)
+	if (SlotState == ESlotState::SKILL && Player != NULL)
 	{
 		switch (SlotNum)
 		{
@@ -375,5 +375,6 @@ void USlotWidget::SkillRefresh(FSkillResourceData* _data)
 	Controller = Cast<AMyPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 	ItemNum->SetVisibility(ESlateVisibility::Collapsed);
 	SkillBar->WidgetStyle.BackgroundImage.SetResourceObject(_data->SkillImage);
+	SlotState = ESlotState::SKILL;
 	
 }

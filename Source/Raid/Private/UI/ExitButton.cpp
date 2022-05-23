@@ -20,6 +20,7 @@ FReply UExitButton::NativeOnMouseButtonDown(const FGeometry& MyGeometry, const F
 	{
 
 		ButtonCasting = true;
+		return FReply::Handled();
 	}
 	else if (MouseEvent.IsMouseButtonDown(FKey("RightMouseButton")))
 	{
@@ -41,7 +42,8 @@ FReply UExitButton::NativeOnMouseButtonUp(const FGeometry& MyGeometry, const FPo
 		ButtonCasting = false;
 		this->GetParent()->SetVisibility(ESlateVisibility::Collapsed);
 		//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Yellow, this->GetParent()->GetParent()->GetName());
+
 	}
 
-	return reply.NativeReply;
+	return FReply::Handled();
 }

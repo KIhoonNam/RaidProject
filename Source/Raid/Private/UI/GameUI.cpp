@@ -118,7 +118,7 @@ bool UGameUI::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& In
 
 	UDragDropWidget* oper = Cast<UDragDropWidget>(InOperation);
 
-	if (oper == NULL) return false;
+	if (oper == NULL || !oper->IsScreenMove) return false;
 
 	oper->CurrentWidget->AddToViewport();
 

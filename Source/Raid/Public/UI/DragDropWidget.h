@@ -37,6 +37,7 @@ public:
 	int32 ItemId;
 	UTextBlock* ItemNum;
 	FVector2D DragPosition;
+	bool IsScreenMove = false;
 
 
 protected:
